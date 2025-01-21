@@ -1,4 +1,4 @@
 # Macro Project 1 : 
-Countries chosen : Advanced : 
-                   Emerging :
-                   Low- income:
+Countries chosen : Advanced : Singapore
+                   Emerging : India 
+                   Low- income: Sri Lanka / Bangladesh
