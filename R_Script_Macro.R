@@ -67,6 +67,101 @@ ggplot(Macro_Data_Final, aes(x = Year, y = GDPPCG, color = Country)) +
   scale_y_continuous(labels = scales::comma) +
   scale_x_continuous(breaks = seq(min(Macro_Data_Final$Year), max(Macro_Data_Final$Year), by = 5))
 
+# Define the decade ranges
+Macro_Data_Final <- Macro_Data_Final %>%
+  mutate(DecadeRange = case_when(
+    Year >= 1974 & Year < 1980 ~ "1970s",
+    Year >= 1980 & Year < 1990 ~ "1980s",
+    Year >= 1990 & Year < 2000 ~ "1990s",
+    Year >= 2000 & Year < 2010 ~ "2000s",
+    Year >= 2010 & Year <= 2023 ~ "2010s",
+    TRUE ~ "Other"
+  ))
+
+# Plot GDP Per Capita by Country
+ggplot(Macro_Data_Final, aes(x = Year, y = GDPPC, color = Country)) +
+  geom_line(linewidth = 1.4) +
+  labs(
+    title = "GDP Per Capita",
+    x = "Year",
+    y = "GDP per Capita (USD)",
+    color = "Country"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.major = element_line(size = 0.5, color = "gray90"),
+    panel.grid.minor = element_blank()  
+  ) +
+  scale_y_continuous(labels = scales::comma)
+
+# Calculate average growth rate for each year across all countries
+Avg_Growth_Rate_Decade <- Macro_Data_Final %>%
+  group_by(Country, DecadeRange) %>%
+  summarise(AvgGrowthRate = mean(GDPPCG, na.rm = TRUE))
+
+ggplot(Avg_Growth_Rate_Decade, aes(x = DecadeRange, y = AvgGrowthRate, fill = Country)) +
+  geom_bar(stat = "identity", position = "dodge") +  
+  labs(
+    title = "Average GDP Per Capita Growth Rate by Decade (1974-2023)",
+    x = "",
+    y = "Average Growth Rate (%)",
+    fill = "Country"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.major = element_line(size = 0.5, color = "gray90"),
+    panel.grid.minor = element_blank(),  
+    axis.text.x = element_text(angle = 45, hjust = 1)  
+  ) +
+  scale_y_continuous(
+    labels = scales::comma,
+    limits = c(0, 10)  
+  ) 
+
+# Charts for FDI
+ggplot(Macro_Data_Final, aes(x = DecadeRange, y = FDI, fill = Country)) +
+  geom_bar(stat = "identity", position = "dodge") +  
+  labs(
+    title = "FDI",
+    x = "",
+    y = "FDI",
+    fill = "Country"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.major = element_line(size = 0.5, color = "gray90"),
+    panel.grid.minor = element_blank(),  
+    axis.text.x = element_text(angle = 45, hjust = 1)  
+  ) +
+  scale_y_continuous(
+    labels = scales::comma,
+    limits = c(0, 10)  
+  ) # Format y-axis as percentages
+
+#HDI by Decade
+Avg_HDI_Decade <- Macro_Data_Final %>%
+  group_by(Country, DecadeRange) %>%
+  summarise(AvgHDI = mean(HDI, na.rm = TRUE))
+
+# Charts for HDI
+ggplot(Avg_HDI_Decade, aes(x = DecadeRange, y = AvgHDI, fill = Country)) +
+  geom_bar(stat = "identity", position = "dodge") +  
+  labs(
+    title = "HDI",
+    x = "",
+    y = "HDI",
+    fill = "Country"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.major = element_line(size = 0.5, color = "gray90"),
+    panel.grid.minor = element_blank(),  # Remove minor gridlines
+    axis.text.x = element_text(angle = 45, hjust = 1) 
+  ) +
+  scale_y_continuous(
+    labels = scales::comma,
+    limits = c(0, 1)  
+  ) 
 
 #Part 3
 
