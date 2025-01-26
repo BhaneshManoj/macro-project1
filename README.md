@@ -15,7 +15,7 @@ This project analyzes economic growth across three countries (Singapore, India, 
 1.  **World Bank World Development Indicators (WDI):** Data for GDP per capita growth, GDP growth, employment-to-population ratio, foreign direct investment inflows, inflation, population growth, exports of goods and services, GDP per capita, Gini index, and unemployment rates were downloaded from the World Bank's WDI database. The data covers the period from 1974 to 2023.
 2.  **UNDP Human Development Report (HDR):** Data for the Human Development Index (HDI) was obtained from the UNDP HDR. The data spans from 1990 to 2022.
 
-### Data Preprocessing Steps (Implemented in `scripts/data_cleaning.R`)
+### Data Preprocessing Steps (Implemented in R_Script_Macro.R)
 
 1.  **Data Loading:** The WDI and HDI data were loaded into R as data frames.
 2.  **Data Cleaning:**
