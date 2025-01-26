@@ -1,27 +1,41 @@
-# Macro Project 1
+# Project: Comparative Economic Growth Analysis
 
-## Countries chosen
+This project analyzes economic growth across three countries (Singapore, India, and Sri Lanka) representing different stages of development. It uses macroeconomic data and visualization techniques to identify key drivers of growth.
 
-### Advanced
-- Singapore
+## Project Structure
+*   `data/`: Contains the raw data files sourced from the World Bank and UNDP.
+*   `scripts/`: Contains R scripts for data processing, analysis, and visualization.
+*   `figures/`: Stores the generated plots and figures from the analysis (created when running `analysis.R`).
+*   `requirements.txt`: Lists the R packages required to run the scripts.
 
-### Emerging
-- India
+## Data Sources and Preprocessing Steps
 
-### Low-income
-- Sri Lanka / Bangladesh
+### Data Sources
 
+1.  **World Bank World Development Indicators (WDI):** Data for GDP per capita growth, GDP growth, employment-to-population ratio, foreign direct investment inflows, inflation, population growth, exports of goods and services, GDP per capita, Gini index, and unemployment rates were downloaded from the World Bank's WDI database. The data covers the period from 1974 to 2023.
+2.  **UNDP Human Development Report (HDR):** Data for the Human Development Index (HDI) was obtained from the UNDP HDR. The data spans from 1990 to 2022.
 
-This paper adopts a quantitative approach, emphasizing data visualization to analyze growth trajectories across selected countries. Using R, the annual GDP per capita growth rates of a low-income, emerging, and advanced economy are plotted to highlight patterns and trends in economic performance. For a deeper analysis, India, as an emerging economy, is examined in distinct economic periods, including pre- and post-economic liberalization, global financial crises, pandemics, and other significant events. Average GDP growth during these periods is visualized to understand the country’s economic response to both domestic and global factors.
-Additionally, the relationship between GDP growth and the selected macroeconomic variables is analyzed. Correlation matrices and scatterplots generated in R identify key variables that strongly influence growth. Visualization techniques are used throughout to provide clear and impactful understandings into growth patterns and their underlying drivers.
+### Data Preprocessing Steps (Implemented in `R_Script_Macro.R`)
 
+1.  **Data Loading:** The WDI and HDI data were loaded into R as data frames.
+2.  **Data Cleaning:**
+    *   Missing values were handled using linear interpolation. This method estimates missing data points based on existing values, ensuring a complete dataset for analysis. This was done using the `na.approx` function from the `zoo` package in R.
+    *   Data was filtered to include only the relevant countries (Singapore, India, and Sri Lanka) and the specified time periods.
+    *   Data was merged based on year to create a single dataset for analysis.
+3.  **Data Transformation:** No major transformations were performed, but the data was formatted to be suitable for analysis and visualization in R.
 
-Data Sources :
- DataBank | World Development Indicators
-https://databank.worldbank.org/source/world-development-indicators
-UNDP
-https://hdr.undp.org/data-center/documentation-and-downloads
-(1974 - 2023)
-Our World in Data
-https://ourworldindata.org/economic-inequality
- 
+## Instructions for Replicating the Work
+
+1.  **Software Requirements:**
+    *   R (version 4.0 or later recommended)
+    *   RStudio (optional, but recommended for ease of use)
+
+2.  **R Packages:** Install the necessary R packages. You can install them by running the following code in your R console or R script:
+
+```R
+library(tidyverse)
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(zoo)
+library(GGally)
