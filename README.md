@@ -3,19 +3,10 @@
 This project analyzes economic growth across three countries (Singapore, India, and Sri Lanka) representing different stages of development. It uses macroeconomic data and visualization techniques to identify key drivers of growth.
 
 ## Project Structure
-*   `data/`: Contains the raw data files sourced from the World Bank and UNDP.
-*   `scripts/`: Contains R scripts for data processing, analysis, and visualization.
-*   `figures/`: Stores the generated plots and figures from the analysis (created when running `analysis.R`).
-*   `requirements.txt`: Lists the R packages required to run the scripts.
 
-## Project Structure
-
-*   `README.md`: Project documentation.
-*   `scripts/`:
-    *   `main.py`: Main Python script.
-*   `data/`:
-    *   `input.txt`: Input data file.
-
+*   `R_Script_Macro.R`: Contains R scripts for data processing, analysis, and visualization.
+*   `figures/`: Stores the generated plots and figures from the analysis.
+*   `Instructions for Replicating the Work`: Lists the R packages required to run the scripts.
 
 
 
@@ -51,6 +42,7 @@ This project analyzes economic growth across three countries (Singapore, India, 
 2.  **R Packages:**
     The following R packages are required. Install them by running this code in R:
 
+
 ```r
 library(tidyverse)
 library(readxl)
@@ -60,5 +52,5 @@ library(zoo)
 library(GGally)
 
 **Expected Output:**
-    Running the analysis script will generate several plots in the `figures/` directory, including a line plot of GDP per capita growth for each country and correlation plots.
+ Running the analysis script will generate several plots  including a line plot of GDP per capita growth for each country and correlation plots.
 
