@@ -40,4 +40,25 @@ This project analyzes economic growth across three countries (Singapore, India, 
 1.  **Data Loading:** The WDI and HDI data were loaded into R using `read.csv()`.
 2.  **Filtering and Selecting Data:** The data was filtered to include only Singapore (SGP), India (IND), and Sri Lanka (LKA) and the relevant indicators were selected for analysis.
 3.  **Merging Data:** The WDI and HDI datasets were merged by country code and year using the `merge()` function in R with `all=TRUE` to ensure all data was included.
-4.  **Missing Value Handling:** Missing values in the merged dataset were imputed using linear interpolation with the `na.approx()` function from the `zoo` package. For example:
+4.  **Missing Value Handling:** Missing values in the merged dataset were imputed using linear interpolation with the `na.approx()` function from the `zoo` package.
+
+ ## Instructions for Replicating the Work
+
+1.  **Software Requirements:**
+    *   R (version 4.2.0 or later recommended): [https://www.r-project.org/](https://www.r-project.org/)
+    *   RStudio (recommended IDE): [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
+
+2.  **R Packages:**
+    The following R packages are required. Install them by running this code in R:
+
+```r
+library(tidyverse)
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(zoo)
+library(GGally)
+
+**Expected Output:**
+    Running the analysis script will generate several plots in the `figures/` directory, including a line plot of GDP per capita growth for each country and correlation plots.
+
