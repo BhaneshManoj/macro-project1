@@ -139,22 +139,43 @@ ggplot(avg_gdp_growth_india, aes(x = Period, y = Average_GDP_Growth, fill = "Ind
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-#Part 4
+# Scatterplots to analyze variables and how it effects GDP Growth. (Part 4)
+# Load necessary libraries
+library(ggplot2)
+library(tidyr)
 
-# List of variables to plot against GDPG
-variables <- c("CPI", "FDI", "PopG", "Gini", "Unemp", "HDI", "Exp", "EmPopRatio")
+# Select relevant variables
+variables <- c("PopG", "FDI", "HDI", "CPI", "Gini", "Unemp", "Exp", "EmPopRatio")
 
-# Loop through each variable and create scatter plots
-for (var in variables) {
-  # Generate the scatter plot
-  plot <- ggplot(Macro_Data_Final, aes_string(x = var, y = "GDPG", color = "Country")) +
+# Reshape data to long format for easier plotting
+data_long <- Macro_Data_Final %>%
+  pivot_longer(cols = all_of(variables), names_to = "Variable", values_to = "Value")
+
+# Loop through each country and create a plot
+countries <- unique(data_long$Country)
+for (country in countries) {
+  # Filter data for the current country
+  country_data <- data_long %>% filter(Country == country)
+  
+  # Create scatterplot grid
+  plot <- ggplot(country_data, aes(x = Value, y = GDPG, color = Variable)) +
     geom_point(alpha = 0.6, size = 3) +
-    geom_smooth(method = "lm", se = FALSE, color = "black", linetype = "dashed") +
-    labs(title = paste("GDP Growth vs", var, "by Country"),
-         x = var,
-         y = "GDP Growth (GDPG)") +
+    geom_smooth(method = "lm", se = FALSE, linetype = "dashed", color = "black") +
+    facet_wrap(~Variable, scales = "free", ncol = 3) +
+    labs(
+      title = paste("GDP Growth (GDPG) vs Variables for", country),
+      x = "Variable Value",
+      y = "GDP Growth (GDPG)"
+    ) +
     theme_minimal() +
-    theme(legend.position = "bottom")
+    theme(
+      plot.title = element_text(hjust = 0.5, size = 10, face = "bold"),
+      axis.text.x = element_text(angle = 45, hjust = 1, size = 10),
+      axis.text.y = element_text(size = 10),
+      axis.title = element_text(size = 10),
+      strip.text = element_text(size = 10, face = "bold"),
+      legend.position = "bottom"
+    )
   
   # Print the plot
   print(plot)
