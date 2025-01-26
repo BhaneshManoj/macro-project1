@@ -5,7 +5,7 @@ This project analyzes economic growth across three countries (Singapore, India, 
 ## Project Structure
 
 *   `R_Script_Macro.R`: Contains R scripts for data processing, analysis, and visualization.
-*   `figures/`: Stores the generated plots and figures from the analysis.
+*   ``: Script that has code for plotting more histograms for further analysis.
 *   `Instructions for Replicating the Work`: Lists the R packages required to run the scripts.
 
 
